@@ -1,0 +1,6 @@
+## Interface: 40000
+## Version: 4.002
+## Title: Pick A Pet
+## Notes: An add-on to help you decide which Hunter pet will benefit your raid or party the most!
+Pick_A_Pet.lua
+Pick_A_Pet.xml

@@ -1,0 +1,609 @@
+<Ui xmlns="http://www.blizzard.com/wow/ui/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.blizzard.com/wow/ui/ 
+ ..\..\FrameXML\UI.xsd">
+
+	<Script File="Pick_A_Pet.lua"/>
+
+	<Frame name="PickAPetFrame" frameStrata="HIGH" toplevel="true" enableMouse="true" movable="true" parent="UIParent" hidden="true">		
+		<Size>
+			<AbsDimension x="220" y="450"/>
+		</Size>
+		<Anchors>
+			<Anchor point="CENTER"></Anchor>
+		</Anchors>
+		
+		<Layers>
+			<Layer level="OVERLAY">
+				<FontString name="DrotaraPickAPet" inherits="ErrorFont" justifyH="LEFT" text="Pick-A-Pet v0.9 Beta">
+					<Color r=".69" g=".42" b=".16" a="1"/>
+					<Anchors>
+						<Anchor point="TOPLEFT" relativeTo="$parent" x="15" y="-17">			
+						</Anchor>
+					</Anchors>	
+					<Shadow>
+					    <Offset x="2" y="-2" />
+						<Color r="0" g="0" b="0"/>
+					</Shadow>
+				</FontString>																																								
+				
+				<FontString name="petToBring" inherits="ErrorFont" justifyH="LEFT" text="Stabled Pets:">
+					<Color r="1" g="1" b="1" a="1"/>
+					<Anchors>
+						<Anchor point="TOPLEFT" relativeTo="$parent" x="17" y="-240">			
+						</Anchor>
+					</Anchors>	
+				</FontString>
+				<FontString name="recommendedPet" inherits="ErrorFont" justifyH="LEFT" text="Recommended Pet:">
+					<Color r="1" g="1" b="1" a="1"/>
+					<Anchors>
+						<Anchor point="TOPLEFT" relativeTo="$parent" x="17" y="-310">			
+						</Anchor>
+					</Anchors>	
+				</FontString>		
+			</Layer>
+		</Layers>
+		
+		<Frames>		
+			<Button name="CoreHoundButton">
+				<Size>
+					<AbsDimension x="50" y="50"/>
+				</Size>	
+				<Anchors>
+					<Anchor point="TOPLEFT">
+						<Offset>
+							<AbsDimension x="25" y="-60"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<NormalTexture name="CoreHound" file="Interface\ICONS\Ability_Hunter_Pet_CoreHound" alphaMode="ADD" hidden="false" alpha="1">
+					<Size>
+						<AbsDimension x="50" y="50"/>
+					</Size>							
+				</NormalTexture>
+				<PushedTexture name="CoreHoundPushedTexture" file="Interface\ICONS\Ability_Hunter_Pet_CoreHound" alphaMode="ADD" hidden="false" alpha="1">
+					<Size>
+						<AbsDimension x="49" y="49"/>
+					</Size>	
+					<Anchors>
+						<Anchor point="CENTER"></Anchor>
+					</Anchors>
+				</PushedTexture>		
+				<Scripts>
+					<OnEnter>
+						ShowCoreHoundTooltip();
+						hunterSpec();
+					</OnEnter>
+					<OnLeave>
+						HideGameTooltip();
+					</OnLeave>
+				</Scripts>
+			</Button>
+			
+			<Button name="KingsButton">
+				<Size>
+					<AbsDimension x="50" y="50"/>
+				</Size>	
+				<Anchors>
+					<Anchor point="TOPLEFT">
+						<Offset>
+							<AbsDimension x="25" y="-120"/>
+						</Offset>
+					</Anchor>
+				</Anchors>			
+				<NormalTexture name="Kings" file="Interface\ICONS\Spell_Magic_MageArmor" hidden="false" alphaMode="ADD" alpha="1">
+					<Size>
+						<AbsDimension x="50" y="50"/>
+					</Size>				
+				</NormalTexture>
+				<PushedTexture name="KingsPushedTexture" file="Interface\ICONS\Spell_Magic_MageArmor" hidden="false" alphaMode="ADD" alpha="1">
+					<Size>
+						<AbsDimension x="49" y="49"/>
+					</Size>		
+					<Anchors>
+						<Anchor point="CENTER"></Anchor>
+					</Anchors>
+				</PushedTexture>				
+				<Scripts>
+					<OnEnter>
+						ShowKingsTooltip();
+						hunterSpec();
+					</OnEnter>
+					<OnLeave>
+						HideGameTooltip();
+					</OnLeave>
+				</Scripts>				
+			</Button>
+
+			<Button name="SilithidButton">
+				<Size>
+					<AbsDimension x="50" y="50"/>
+				</Size>	
+				<Anchors>
+					<Anchor point="TOPLEFT">
+						<Offset>
+							<AbsDimension x="25" y="-180"/>
+						</Offset>
+					</Anchor>
+				</Anchors>					
+				<NormalTexture name="Silithid" file="Interface\ICONS\Ability_Hunter_Pet_Silithid" hidden="false" alphaMode="ADD" alpha="1">
+					<Size>
+						<AbsDimension x="50" y="50"/>
+					</Size>
+				</NormalTexture>
+				<PushedTexture name="SilithidPushedTexture" file="Interface\ICONS\Ability_Hunter_Pet_Silithid" hidden="false" alphaMode="ADD" alpha="1">
+					<Size>
+						<AbsDimension x="49" y="49"/>
+					</Size>
+					<Anchors>
+						<Anchor point="CENTER"></Anchor>
+					</Anchors>					
+				</PushedTexture>	
+				<Scripts>
+					<OnEnter>
+						ShowSilithidTooltip();
+						hunterSpec();
+					</OnEnter>
+					<OnLeave>
+						HideGameTooltip();
+					</OnLeave>
+				</Scripts>
+			</Button>	
+
+			<Button name="RaptorButton">
+				<Size>
+					<AbsDimension x="50" y="50"/>
+				</Size>	
+				<Anchors>
+					<Anchor point="TOPLEFT">
+						<Offset>
+							<AbsDimension x="85" y="-60"/>
+						</Offset>
+					</Anchor>
+				</Anchors>					
+				<NormalTexture name="Raptor" file="Interface\ICONS\Ability_Hunter_Pet_Raptor" hidden="false" alphaMode="ADD" alpha="1">
+					<Size>
+						<AbsDimension x="50" y="50"/>
+					</Size>				
+				</NormalTexture>	
+				<PushedTexture name="RaptorPushedTexture" file="Interface\ICONS\Ability_Hunter_Pet_Raptor" hidden="false" alphaMode="ADD" alpha="1">
+					<Size>
+						<AbsDimension x="49" y="49"/>
+					</Size>
+					<Anchors>
+						<Anchor point="CENTER">
+						</Anchor>
+					</Anchors>					
+				</PushedTexture>	
+				<Scripts>
+					<OnEnter>
+						ShowRaptorTooltip();
+					</OnEnter>
+					<OnLeave>
+						HideGameTooltip();
+					</OnLeave>
+				</Scripts>
+			</Button>
+
+			<Button name="WolfButton">
+				<Size>
+					<AbsDimension x="50" y="50"/>
+				</Size>	
+				<Anchors>
+					<Anchor point="TOPLEFT">
+						<Offset>
+							<AbsDimension x="85" y="-120"/>
+						</Offset>
+					</Anchor>
+				</Anchors>			
+				<NormalTexture name="Wolf" file="Interface\ICONS\Ability_Hunter_Pet_Wolf" hidden="false" alphaMode="ADD" alpha="1">
+					<Size>
+						<AbsDimension x="50" y="50"/>
+					</Size>				
+				</NormalTexture>	
+				<PushedTexture name="WolfPushedTexture" file="Interface\ICONS\Ability_Hunter_Pet_Wolf" hidden="false" alphaMode="ADD" alpha="1">
+					<Size>
+						<AbsDimension x="49" y="49"/>
+					</Size>
+					<Anchors>
+						<Anchor point="CENTER">
+						</Anchor>
+					</Anchors>					
+				</PushedTexture>	
+				<Scripts>
+					<OnEnter>
+						ShowWolfTooltip();
+					</OnEnter>
+					<OnLeave>
+						HideGameTooltip();
+					</OnLeave>
+				</Scripts>	
+			</Button>
+
+			<Button name="RavagerButton">
+				<Size>
+					<AbsDimension x="50" y="50"/>
+				</Size>	
+				<Anchors>
+					<Anchor point="TOPLEFT">
+						<Offset>
+							<AbsDimension x="85" y="-180"/>
+						</Offset>
+					</Anchor>
+				</Anchors>				
+				<NormalTexture name="Ravager" file="Interface\ICONS\Ability_Hunter_Pet_Ravager" hidden="false" alphaMode="ADD" alpha="1">
+					<Size>
+						<AbsDimension x="50" y="50"/>
+					</Size>				
+				</NormalTexture>			
+				<PushedTexture name="RavagerPushedTexture" file="Interface\ICONS\Ability_Hunter_Pet_Ravager" hidden="false" alphaMode="ADD" alpha="1">
+					<Size>
+						<AbsDimension x="49" y="49"/>
+					</Size>
+					<Anchors>
+						<Anchor point="CENTER">
+						</Anchor>
+					</Anchors>					
+				</PushedTexture>	
+				<Scripts>
+					<OnEnter>
+						ShowRavagerTooltip();
+					</OnEnter>
+					<OnLeave>
+						HideGameTooltip();
+					</OnLeave>
+				</Scripts>
+			</Button>
+			
+			<Button name="WindSerpentButton">
+				<Size>
+					<AbsDimension x="50" y="50"/>
+				</Size>	
+				<Anchors>
+					<Anchor point="TOPLEFT">
+						<Offset>
+							<AbsDimension x="145" y="-60"/>
+						</Offset>
+					</Anchor>
+				</Anchors>			
+				<NormalTexture name="WindSerpent" file="Interface\ICONS\Ability_Hunter_Pet_WindSerpent" hidden="false" alphaMode="ADD" alpha="1">
+					<Size>
+						<AbsDimension x="50" y="50"/>
+					</Size>				
+				</NormalTexture>	
+				<PushedTexture name="WindSerpentPushedTexture" file="Interface\ICONS\Ability_Hunter_Pet_WindSerpent" hidden="false" alphaMode="ADD" alpha="1">
+					<Size>
+						<AbsDimension x="49" y="49"/>
+					</Size>
+					<Anchors>
+						<Anchor point="CENTER">
+						</Anchor>
+					</Anchors>					
+				</PushedTexture>	
+				<Scripts>
+					<OnEnter>
+						ShowWindSerpentTooltip();
+					</OnEnter>
+					<OnLeave>
+						HideGameTooltip();
+					</OnLeave>
+				</Scripts>			
+			</Button>
+			
+			<Button name="CatButton">
+				<Size>
+					<AbsDimension x="50" y="50"/>
+				</Size>	
+				<Anchors>
+					<Anchor point="TOPLEFT">
+						<Offset>
+							<AbsDimension x="145" y="-120"/>
+						</Offset>
+					</Anchor>
+				</Anchors>					
+				<NormalTexture name="Cat" file="Interface\ICONS\Ability_Hunter_Pet_Cat" hidden="false" alphaMode="ADD" alpha="1">
+					<Size>
+						<AbsDimension x="50" y="50"/>
+					</Size>				
+				</NormalTexture>		
+				<PushedTexture name="CatPushedTexture" file="Interface\ICONS\Ability_Hunter_Pet_Cat" hidden="false" alphaMode="ADD" alpha="1">
+					<Size>
+						<AbsDimension x="49" y="49"/>
+					</Size>
+					<Anchors>
+						<Anchor point="CENTER">
+						</Anchor>
+					</Anchors>					
+				</PushedTexture>	
+				<Scripts>
+					<OnEnter>
+						ShowCatTooltip();
+					</OnEnter>
+					<OnLeave>
+						HideGameTooltip();
+					</OnLeave>
+				</Scripts>		
+			</Button>
+			
+			<Button name="HyenaButton">
+				<Size>
+					<AbsDimension x="50" y="50"/>
+				</Size>	
+				<Anchors>
+					<Anchor point="TOPLEFT">
+						<Offset>
+							<AbsDimension x="145" y="-180"/>
+						</Offset>
+					</Anchor>
+				</Anchors>			
+				<NormalTexture name="Hyena" file="Interface\ICONS\Ability_Hunter_Pet_Hyena" hidden="false" alphaMode="ADD" alpha="1">
+					<Size>
+						<AbsDimension x="50" y="50"/>
+					</Size>				
+				</NormalTexture>	
+				<PushedTexture name="HyenaPushedTexture" file="Interface\ICONS\Ability_Hunter_Pet_Hyena" hidden="false" alphaMode="ADD" alpha="1">
+					<Size>
+						<AbsDimension x="49" y="49"/>
+					</Size>
+					<Anchors>
+						<Anchor point="CENTER">
+						</Anchor>
+					</Anchors>					
+				</PushedTexture>	
+				<Scripts>
+					<OnEnter>
+						ShowHyenaTooltip();
+					</OnEnter>
+					<OnLeave>
+						HideGameTooltip();
+					</OnLeave>
+				</Scripts>	
+			</Button>		
+
+			<Button name="Stable1Button" inherits="SecureActionButtonTemplate">
+				<Attributes>
+					<Attribute name="type" type="string" value="spell"/>
+					<Attribute name="spell" type="string" value="Call Pet 1"/>
+				</Attributes>			
+				<Size>
+					<AbsDimension x="35" y="35" />
+				</Size>
+				<Anchors>
+					<Anchor point="TOPLEFT">
+						<Offset>
+							<AbsDimension x="25" y="-265"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<NormalTexture name="Stable1Texture" file="Interface\ICONS\INV_Misc_Bandage_06" hidden="false" alphaMode="ADD" alpha="1">
+					<Size>
+						<AbsDimension x="25" y="25" />
+					</Size>				
+				</NormalTexture>
+				<PushedTexture name="HyenaPushedTexture" file="Interface\ICONS\INV_Misc_Bandage_06" hidden="false" alphaMode="ADD" alpha="1">
+					<Size>
+						<AbsDimension x="24" y="24"/>
+					</Size>
+					<Anchors>
+						<Anchor point="CENTER">
+						</Anchor>
+					</Anchors>					
+				</PushedTexture>
+				<Scripts>
+					<OnEnter>
+						ShowStable1Tooltip();
+					</OnEnter>
+					<OnLeave>
+						HideGameTooltip();
+					</OnLeave>
+				</Scripts>
+			</Button>
+			
+			<Button name="Stable2Button" inherits="SecureActionButtonTemplate">
+				<Attributes>
+					<Attribute name="type" type="string" value="spell"/>
+					<Attribute name="spell" type="string" value="Call Pet 2"/>
+				</Attributes>				
+				<Size>
+					<AbsDimension x="35" y="35" />
+				</Size>
+				<Anchors>
+					<Anchor point="TOPLEFT">
+						<Offset>
+							<AbsDimension x="70" y="-265"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<NormalTexture name="Stable2Texture" file="Interface\ICONS\INV_Misc_Bandage_06" hidden="false" alphaMode="ADD" alpha="1">
+					<Size>
+						<AbsDimension x="25" y="25" />
+					</Size>				
+				</NormalTexture>	
+				<PushedTexture name="HyenaPushedTexture" file="Interface\ICONS\INV_Misc_Bandage_06" hidden="false" alphaMode="ADD" alpha="1">
+					<Size>
+						<AbsDimension x="24" y="24"/>
+					</Size>
+					<Anchors>
+						<Anchor point="CENTER">
+						</Anchor>
+					</Anchors>					
+				</PushedTexture>				
+				<Scripts>
+					<OnEnter>
+						ShowStable2Tooltip();
+					</OnEnter>
+					<OnLeave>
+						HideGameTooltip();
+					</OnLeave>
+				</Scripts>				
+			</Button>	
+
+			<Button name="Stable3Button" inherits="SecureActionButtonTemplate">
+				<Attributes>
+					<Attribute name="type" type="string" value="spell"/>
+					<Attribute name="spell" type="string" value="Call Pet 3"/>
+				</Attributes>				
+				<Size>
+					<AbsDimension x="35" y="35" />
+				</Size>
+				<Anchors>
+					<Anchor point="TOPLEFT">
+						<Offset>
+							<AbsDimension x="115" y="-265"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<NormalTexture name="Stable3Texture" file="Interface\ICONS\INV_Misc_Bandage_06" hidden="false" alphaMode="ADD" alpha="1">
+					<Size>
+						<AbsDimension x="25" y="25" />
+					</Size>				
+				</NormalTexture>
+				<PushedTexture name="HyenaPushedTexture" file="Interface\ICONS\INV_Misc_Bandage_06" hidden="false" alphaMode="ADD" alpha="1">
+					<Size>
+						<AbsDimension x="24" y="24"/>
+					</Size>
+					<Anchors>
+						<Anchor point="CENTER">
+						</Anchor>
+					</Anchors>					
+				</PushedTexture>				
+				<Scripts>
+					<OnEnter>
+						ShowStable3Tooltip();
+					</OnEnter>
+					<OnLeave>
+						HideGameTooltip();
+					</OnLeave>
+				</Scripts>
+			</Button>
+			
+			<Button name="Stable4Button" inherits="SecureActionButtonTemplate">
+				<Attributes>
+					<Attribute name="type" type="string" value="spell"/>
+					<Attribute name="spell" type="string" value="Call Pet 4"/>
+				</Attributes>				
+				<Size>
+					<AbsDimension x="35" y="35" />
+				</Size>
+				<Anchors>
+					<Anchor point="TOPLEFT">
+						<Offset>
+							<AbsDimension x="160" y="-265"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<NormalTexture name="Stable4Texture" file="Interface\ICONS\INV_Misc_Bandage_06" hidden="false" alphaMode="ADD" alpha="1">
+					<Size>
+						<AbsDimension x="25" y="25" />
+					</Size>				
+				</NormalTexture>
+				<PushedTexture name="HyenaPushedTexture" file="Interface\ICONS\INV_Misc_Bandage_06" hidden="false" alphaMode="ADD" alpha="1">
+					<Size>
+						<AbsDimension x="24" y="24"/>
+					</Size>
+					<Anchors>
+						<Anchor point="CENTER">
+						</Anchor>
+					</Anchors>					
+				</PushedTexture>				
+				<Scripts>
+					<OnEnter>
+						ShowStable4Tooltip();
+					</OnEnter>
+					<OnLeave>
+						HideGameTooltip();
+					</OnLeave>
+				</Scripts>
+			</Button>			
+					
+			<Button name="UpdateBestPet" inherits="OptionsButtonTemplate" text="Find the best pet!">
+				<Size>
+					<AbsDimension x="150" y="32"/>
+				</Size>
+				<Anchors>
+					<Anchor point="BOTTOM">
+						<Offset>
+							<AbsDimension y="16"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick> 						
+						getPartyMembers();
+						hunterSpec();	
+						getHunterPetInfo();
+						petRecommendation();
+					</OnClick>
+				</Scripts>
+			</Button>
+			
+			<Button name="bestRecommendedPet">
+				<Size>
+					<AbsDimension x="50" y="50"/>
+				</Size>
+				<Anchors>
+					<Anchor point="BOTTOM">
+						<Offset>
+							<AbsDimension y="65"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<NormalTexture name="Stable4Texture" file="Interface\ICONS\INV_Misc_Bandage_06" hidden="false" alphaMode="ADD" alpha="1">
+					<Size>
+						<AbsDimension x="50" y="50" />
+					</Size>						
+				</NormalTexture>		
+			</Button>
+			
+			<Button name="closePickPetFrame" inherits="OptionsButtonTemplate" text="X">
+				<Size>
+					<AbsDimension x="22" y="24"/>
+				</Size>
+				<Anchors>
+					<Anchor point="TOPRIGHT">
+						<Offset>
+							<AbsDimension x="-16" y="-12"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>						
+						PickAPetFrame:Hide();
+					</OnClick>
+				</Scripts>
+			</Button>
+
+		</Frames>
+		
+		<Backdrop bgFile="Interface\DialogFrame\UI-DialogBox-Background" edgeFile="Interface\DialogFrame\UI-DialogBox-Border" tile="true">
+			<BackgroundInsets>
+				<AbsInset left="11" right="12" top="12" bottom="11" />
+			</BackgroundInsets>
+			<TileSize>
+				<AbsValue val="32" />
+			</TileSize>
+			<EdgeSize>
+				<AbsValue val="32" />
+			</EdgeSize>
+			<Color r="0.62" g="0.62" b="0.63" />
+			<BorderColor r="0.44" g="0.44" b="0.39" />
+		</Backdrop>	
+		
+		<Scripts>
+			<OnLoad>
+				self:RegisterForDrag("LeftButton");								
+				startUpMessage();
+				tinsert(UISpecialFrames,"PickAPetFrame");
+				hunterSpec();
+				getHunterPetInfo();
+			</OnLoad>			
+			<OnDragStart>
+				self:StartMoving();
+			</OnDragStart>
+			<OnDragStop>
+				self:StopMovingOrSizing();
+			</OnDragStop>	
+			<OnUpdate>
+				getHunterPetInfo();
+			</OnUpdate>
+		</Scripts>			
+	</Frame>	 
+ </Ui> 
